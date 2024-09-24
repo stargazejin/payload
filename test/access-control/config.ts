@@ -129,6 +129,7 @@ export default buildConfigWithDefaults({
     },
     {
       slug: localizedSlug,
+      access: openAccess,
       fields: [
         {
           name: 'title',

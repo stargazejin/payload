@@ -20,6 +20,7 @@ import {
   hiddenAccessCountSlug,
   hiddenAccessSlug,
   hiddenFieldsSlug,
+  localizedSlug,
   relyOnRequestHeadersSlug,
   restrictedVersionsSlug,
   secondArrayText,
@@ -480,6 +481,30 @@ describe('Access Control', () => {
       })
 
       expect(docs).toHaveLength(1)
+    })
+  })
+
+  describe('Localized Access', () => {
+    it('should respect access control for localized fields', async () => {
+      const { id } = await payload.create({
+        collection: localizedSlug,
+        data: {
+          title: 'hello',
+        },
+        locale: 'en',
+      })
+
+      await expect(() =>
+        payload.update({
+          id,
+          collection: localizedSlug,
+          data: {
+            title: 'hola',
+          },
+          locale: 'es',
+          overrideAccess: false,
+        }),
+      ).rejects.toThrow(Forbidden)
     })
   })
 })
