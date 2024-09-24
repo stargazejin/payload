@@ -89,10 +89,7 @@ export const deleteOperation = async <TSlug extends CollectionSlug>(
     let accessResult: AccessResult
 
     if (!overrideAccess) {
-      accessResult = await executeAccess(
-        { operation: 'delete', req },
-        collectionConfig.access.delete,
-      )
+      accessResult = await executeAccess({ req }, collectionConfig.access.delete)
     }
 
     await validateQueryPaths({

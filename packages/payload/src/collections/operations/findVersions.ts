@@ -49,10 +49,7 @@ export const findVersionsOperation = async <TData extends TypeWithVersion<TData>
     let accessResults
 
     if (!overrideAccess) {
-      accessResults = await executeAccess(
-        { operation: 'read', req },
-        collectionConfig.access.readVersions,
-      )
+      accessResults = await executeAccess({ req }, collectionConfig.access.readVersions)
     }
 
     const versionFields = buildVersionCollectionFields(payload.config, collectionConfig)
