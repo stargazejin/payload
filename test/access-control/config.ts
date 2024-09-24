@@ -129,9 +129,6 @@ export default buildConfigWithDefaults({
     },
     {
       slug: localizedSlug,
-      access: {
-        update: () => false,
-      },
       fields: [
         {
           name: 'title',
@@ -148,7 +145,7 @@ export default buildConfigWithDefaults({
           type: 'text',
           localized: true,
           access: {
-            update: () => true,
+            update: () => false,
           },
         },
       ],
