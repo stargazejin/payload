@@ -17,6 +17,7 @@ import {
   hiddenAccessCountSlug,
   hiddenAccessSlug,
   hiddenFieldsSlug,
+  localizedGlobalSlug,
   localizedSlug,
   noAdminAccessEmail,
   nonAdminUserEmail,
@@ -81,8 +82,20 @@ export default buildConfigWithDefaults({
         label: 'Spanish',
         code: 'es',
         access: {
+          create: () => true,
           read: () => true,
           update: () => false,
+          delete: () => false,
+        },
+      },
+      {
+        label: 'French',
+        code: 'fr',
+        access: {
+          create: () => false,
+          read: () => false,
+          update: () => true,
+          delete: () => true,
         },
       },
     ],
@@ -597,6 +610,16 @@ export default buildConfigWithDefaults({
         {
           name: 'name',
           type: 'text',
+        },
+      ],
+    },
+    {
+      slug: localizedGlobalSlug,
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          localized: true,
         },
       ],
     },

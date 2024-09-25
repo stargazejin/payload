@@ -42,8 +42,9 @@ export interface Config {
     'read-only-global': ReadOnlyGlobal;
     'user-restricted-global': UserRestrictedGlobal;
     'read-not-update-global': ReadNotUpdateGlobal;
+    'localized-global': LocalizedGlobal;
   };
-  locale: 'en' | 'es';
+  locale: 'en' | 'es' | 'fr';
   user:
     | (User & {
         collection: 'users';
@@ -490,6 +491,16 @@ export interface UserRestrictedGlobal {
 export interface ReadNotUpdateGlobal {
   id: string;
   name?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "localized-global".
+ */
+export interface LocalizedGlobal {
+  id: string;
+  title?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
