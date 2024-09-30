@@ -177,7 +177,12 @@ export const generateFileData = async <T>({
         withMetadata,
       })
       fileBuffer = await sharpFile.toBuffer({ resolveWithObject: true })
-      ;({ ext, mime } = await fromBuffer(fileBuffer.data)) // This is getting an incorrect gif height back.
+      ;
+      if (!fileBuffer?.data) {
+        console.error('FileBuffer or its data is undefined');
+        return;  // Fix since running build version failed in this part
+      }
+      ({ ext, mime } = await fromBuffer(fileBuffer.data)) // This is getting an incorrect gif height back.
       fileData.width = fileBuffer.info.width
       fileData.height = fileBuffer.info.height
       fileData.filesize = fileBuffer.info.size
